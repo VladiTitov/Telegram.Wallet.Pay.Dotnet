@@ -1,14 +1,12 @@
 ﻿using Wallet.Pay.Models;
-using Wallet.Pay.Responses.Order;
+using Wallet.Pay.Responses.Orders;
 
-namespace Wallet.Pay.Requests.Order;
+namespace Wallet.Pay.Requests.Orders;
 
 #nullable disable
-internal class CreateOrderRequest : RequestBase<CreateOrderResponse>
+internal class CreateOrderRequest() 
+    : RequestBase<CreateOrderResponse>("wpay/store-api/v1/order")
 {
-    public CreateOrderRequest() : base("wpay/store-api/v1/order")
-    { }
-
     public Amount Amount { get; set; }
     public string AutoConversionCurrency {  get; set; }
     public string Description { get; set; }

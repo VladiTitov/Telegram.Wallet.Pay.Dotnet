@@ -2,8 +2,8 @@
 
 namespace Wallet.Pay.Requests;
 
-#nullable disable
-public class RequestBase<TResponse>(string uriPath, HttpMethod method) : IRequest<TResponse>
+public class RequestBase<TResponse>(
+    string uriPath, HttpMethod method) : IRequest<TResponse>
 {
     [JsonIgnore]
     public HttpMethod Method { get; } = method;
@@ -15,7 +15,7 @@ public class RequestBase<TResponse>(string uriPath, HttpMethod method) : IReques
         : this(uriPath, HttpMethod.Post)
     { }
 
-    public HttpContent ToHttpContent()
+    public HttpContent? ToHttpContent()
     {
         var content = JsonConvert.SerializeObject(
             value: this,
