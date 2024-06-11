@@ -1,9 +1,11 @@
-﻿namespace Wallet.Pay.Responses;
+﻿using Wallet.Pay.Enums;
+
+namespace Wallet.Pay.Responses;
 
 #nullable disable
-internal class ResponseBase<TResponse> : IResponse<TResponse>
+public class ResponseBase<TResponse> : IResponse<TResponse>
 {
-    public string Status { get; set; }
+    public ResponseStatus Status { get; set; }
     public string Message { get; set; }
     public TResponse Data { get; set; }
 }
