@@ -1,4 +1,5 @@
-﻿using Wallet.Pay.Models;
+﻿using Wallet.Pay.Enums;
+using Wallet.Pay.Models;
 using Wallet.Pay.Requests.Orders;
 
 namespace Wallet.Pay.Tests.Integrations;
@@ -14,7 +15,7 @@ internal class DataGeneratorHelper
             Amount = new Amount
             {
                 Value = "0.01",
-                CurrencyCode = "TON"
+                CurrencyCode = Currency.TON
             },
             ExternalId = "ORD-5023-4E87",
             TimeoutSeconds = 10800,
