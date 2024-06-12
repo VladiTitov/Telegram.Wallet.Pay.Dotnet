@@ -1,0 +1,36 @@
+name: wallet-pay-library
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - develop
+    paths:
+      - src/Wallet.Pay/**
+      - .github/workflows/wallet-pay-library.yml
+
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - src/Wallet.Pay/**
+      - .github/workflows/wallet-pay-library.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore ./src/Wallet.Pay/Wallet.Pay.csproj
+
+      - name: Build
+        run: dotnet build ./src/Wallet.Pay/Wallet.Pay.csproj --configuration Release --no-restore
