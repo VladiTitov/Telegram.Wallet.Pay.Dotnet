@@ -1,6 +1,4 @@
-﻿using Wallet.Pay.Enums;
-
-namespace Wallet.Pay.Models;
+﻿namespace Wallet.Pay.Models;
 
 #nullable disable
 public class Order

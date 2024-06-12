@@ -1,6 +1,4 @@
-﻿using Wallet.Pay.Enums;
-
-namespace Wallet.Pay.Responses;
+﻿namespace Wallet.Pay.Responses;
 
 #nullable disable
 public class ResponseBase<TResponse> : IResponse<TResponse>

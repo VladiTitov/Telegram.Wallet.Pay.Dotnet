@@ -1,22 +1,20 @@
 ﻿using System.Net;
-using Wallet.Pay.Responses;
-using Wallet.Pay.Extensions;
 
 namespace Wallet.Pay;
 
 public class WalletPayClient(
-    WalletPayClientOptions options, HttpClient? httpClient) : IWalletPayClient
+    WalletPayClientOptions options, HttpClient? httpClient = default) : IWalletPayClient
 {
     readonly WalletPayClientOptions _options = options 
         ?? throw new ArgumentNullException(nameof(options));
     readonly HttpClient _httpClient = httpClient 
         ?? new HttpClient().AddRequestHeader("Wpay-Store-Api-Key", options.Token);
 
-    public WalletPayClient(string token, HttpClient? httpClient) 
+    public WalletPayClient(string token, HttpClient? httpClient = default) 
         : this(new WalletPayClientOptions(token), httpClient)
     { }
 
-    public virtual async Task<TResponse> MakeRequestAsync<TResponse>(
+    public async Task<ResponseBase<TResponse>?> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
         CancellationToken cancellationToken = default) where TResponse : class
     {
@@ -42,10 +40,7 @@ public class WalletPayClient(
         }
 
         var content = await httpResponse.Content.ReadAsStringAsync(cancellationToken);
-        var result = JsonConvert.DeserializeObject<ResponseBase<TResponse>>(
-            value: content);
-
-        return result.Data;
+        return JsonConvert.DeserializeObject<ResponseBase<TResponse>>(value: content);
     }
 
     static async Task<HttpResponseMessage> SendRequestAsync(
