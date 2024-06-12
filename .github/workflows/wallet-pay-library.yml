@@ -34,3 +34,6 @@ jobs:
 
       - name: Build
         run: dotnet build ./src/Wallet.Pay/Wallet.Pay.csproj --configuration Release --no-restore
+
+      - name: Tests
+        run: dotnet test ./src/Tests/Wallet.Pay.Tests.Integrations/Wallet.Pay.Tests.Integrations.csproj --environment Token=${{ secrets.TOKEN }}
