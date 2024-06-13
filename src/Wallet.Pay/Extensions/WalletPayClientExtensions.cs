@@ -37,11 +37,7 @@ public static class WalletPayClientExtensions
         => walletPayClient.MakeRequestAsync(
             request: new CreateOrderRequest()
             {
-                Amount = new()
-                {
-                    CurrencyCode = currency,
-                    Value = amount.ToString()
-                },
+                Amount = new(amount, currency),
                 Description = description,
                 ExternalId = externalId,
                 TimeoutSeconds = timeoutSeconds,

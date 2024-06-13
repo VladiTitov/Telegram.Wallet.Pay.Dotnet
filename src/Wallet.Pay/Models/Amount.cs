@@ -1,4 +1,6 @@
-﻿namespace Wallet.Pay.Models;
+﻿using System.Globalization;
+
+namespace Wallet.Pay.Models;
 
 /// <summary>
 /// Amount model
@@ -6,6 +8,15 @@
 #nullable disable
 public class Amount
 {
+    public Amount()
+    { }
+
+    public Amount(double value, Currency currencyCode)
+    {
+        Value = string.Format(CultureInfo.InvariantCulture, "{0}", value);
+        CurrencyCode = currencyCode;
+    }
+
     /// <summary>
     /// Big decimal string representation. 
     /// Note that the max precision (number of digits after decimal point) depends on the currencyCode. 

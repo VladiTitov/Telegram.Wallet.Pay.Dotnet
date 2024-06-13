@@ -1,5 +1,8 @@
-﻿namespace Wallet.Pay.Enums;
+﻿using Newtonsoft.Json.Converters;
 
+namespace Wallet.Pay.Enums;
+
+[JsonConverter(typeof(StringEnumConverter))]
 public enum Currency
 {
     TON,
@@ -11,6 +14,7 @@ public enum Currency
     RUB
 }
 
+[JsonConverter(typeof(StringEnumConverter))]
 public enum ConversionCurrency
 {
     TON,
