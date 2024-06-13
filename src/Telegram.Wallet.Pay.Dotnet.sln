@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{78835558-7F79-46FB-A699-4DD9E0CDB952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Pay", "Wallet.Pay\Wallet.Pay.csproj", "{723CDA1E-9697-4595-B025-40EE1180AD1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{93F01E51-5443-4E3C-A7F2-BEFC556B6AE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Pay.Tests.Integrations", "Tests\Wallet.Pay.Tests.Integrations\Wallet.Pay.Tests.Integrations.csproj", "{099DB702-6FB2-449A-870F-DBD9C02EA141}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{723CDA1E-9697-4595-B025-40EE1180AD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723CDA1E-9697-4595-B025-40EE1180AD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723CDA1E-9697-4595-B025-40EE1180AD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723CDA1E-9697-4595-B025-40EE1180AD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{099DB702-6FB2-449A-870F-DBD9C02EA141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{099DB702-6FB2-449A-870F-DBD9C02EA141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{099DB702-6FB2-449A-870F-DBD9C02EA141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{099DB702-6FB2-449A-870F-DBD9C02EA141}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{723CDA1E-9697-4595-B025-40EE1180AD1D} = {78835558-7F79-46FB-A699-4DD9E0CDB952}
+		{099DB702-6FB2-449A-870F-DBD9C02EA141} = {93F01E51-5443-4E3C-A7F2-BEFC556B6AE0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC797C09-92B2-42DE-9E69-4AA161CA2347}
+	EndGlobalSection
+EndGlobal
