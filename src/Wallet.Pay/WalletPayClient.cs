@@ -2,8 +2,14 @@
 
 namespace Wallet.Pay;
 
+/// <summary>
+/// A client to use the Telegram Wallet Pay API
+/// </summary>
+/// <param name="options">Configuration for <see cref="WalletPayClient" /></param>
+/// <param name="httpClient">A custom <see cref="HttpClient"/></param>
 public class WalletPayClient(
-    WalletPayClientOptions options, HttpClient? httpClient = default) : IWalletPayClient
+    WalletPayClientOptions options, HttpClient? httpClient = default)
+    : IWalletPayClient
 {
     readonly WalletPayClientOptions _options = options 
         ?? throw new ArgumentNullException(nameof(options));
@@ -14,7 +20,7 @@ public class WalletPayClient(
         : this(new WalletPayClientOptions(token), httpClient)
     { }
 
-    public async Task<ResponseBase<TResponse>?> MakeRequestAsync<TResponse>(
+    public async Task<IResponse<TResponse>> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
         CancellationToken cancellationToken = default) where TResponse : class
     {
@@ -40,7 +46,8 @@ public class WalletPayClient(
         }
 
         var content = await httpResponse.Content.ReadAsStringAsync(cancellationToken);
-        return JsonConvert.DeserializeObject<ResponseBase<TResponse>>(value: content);
+        return JsonConvert.DeserializeObject<ResponseBase<TResponse>>(value: content) 
+            ?? throw new ArgumentNullException(nameof(content));
     }
 
     static async Task<HttpResponseMessage> SendRequestAsync(

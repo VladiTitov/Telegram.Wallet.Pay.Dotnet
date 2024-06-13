@@ -4,12 +4,28 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>Telegram.Wallet.Pay</Title>
+    <Description>Dotnet client for Telegram Wallet Pay API</Description>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/VladiTitov/Telegram.Wallet.Pay.Dotnet</RepositoryUrl>
+    <PackageTags>telegram;wallet;pay;dotnet;client</PackageTags>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
+    <PackageId>Telegram.$(AssemblyName)</PackageId>
+    <Authors>Telegram.$(AssemblyName)</Authors>
   </PropertyGroup>
 
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
 			<_Parameter1>Wallet.Pay.Tests.Integrations</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="D:\logo.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
