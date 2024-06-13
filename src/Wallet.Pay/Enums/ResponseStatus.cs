@@ -4,6 +4,8 @@ public enum ResponseStatus
 {
     SUCCESS,
     ALREADY,
+    CONFLICT,
+    ACCESS_DENIED,
     INVALID_REQUEST,
     INTERNAL_ERROR
 }
