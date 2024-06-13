@@ -1,5 +1,9 @@
 ﻿namespace Wallet.Pay.Responses;
 
+/// <summary>
+/// API response
+/// </summary>
+/// <typeparam name="TResponse">Type of result expected in result</typeparam>
 #nullable disable
 public class ResponseBase<TResponse> : IResponse<TResponse>
 {

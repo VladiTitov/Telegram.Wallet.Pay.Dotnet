@@ -20,7 +20,7 @@ public class WalletPayClient(
         : this(new WalletPayClientOptions(token), httpClient)
     { }
 
-    public async Task<ResponseBase<TResponse>> MakeRequestAsync<TResponse>(
+    public async Task<IResponse<TResponse>> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
         CancellationToken cancellationToken = default) where TResponse : class
     {
