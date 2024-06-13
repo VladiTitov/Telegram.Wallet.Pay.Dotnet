@@ -24,6 +24,11 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.REGISTRY_TOKEN }}
         WITH_V: false
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: "8.0.x"
 
     - name: Pack package to nuget package
       run: dotnet pack --configuration Release ${{ inputs.PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
