@@ -26,7 +26,7 @@ runs:
         WITH_V: false
 
     - name: Pack package to nuget package
-      run: dotnet pack --configuration Release ${{ PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
+      run: dotnet pack --configuration Release ${{ inputs.PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
 
     - name: Publish package to nuget package repository
       run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }}
