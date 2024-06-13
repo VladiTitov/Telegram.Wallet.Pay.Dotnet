@@ -4,6 +4,7 @@ using Wallet.Pay.Responses.Orders;
 namespace Wallet.Pay.Requests.Orders;
 
 #nullable disable
+[JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
 internal class CreateOrderRequest() 
     : RequestBase<CreateOrderResponse>("wpay/store-api/v1/order")
 {
