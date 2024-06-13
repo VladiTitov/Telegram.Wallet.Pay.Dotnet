@@ -1,5 +1,4 @@
 ﻿using Wallet.Pay.Enums;
-using Wallet.Pay.Models;
 using Wallet.Pay.Requests.Orders;
 
 namespace Wallet.Pay.Tests.Integrations;
@@ -10,19 +9,13 @@ internal class DataGeneratorHelper
 
     public DataGeneratorHelper()
     {
+        var externalId = Guid.NewGuid().ToString();
         _createOrderRequest = new()
         {
-            Amount = new Amount
-            {
-                Value = "0.01",
-                CurrencyCode = Currency.TON
-            },
-            ExternalId = "ORD-5023-4E87",
-            TimeoutSeconds = 10800,
+            Amount = new(0.01, Currency.TON),
+            ExternalId = externalId,
             Description = "VPN for 1 month",
-            ReturnUrl = "https://t.me/wallet",
-            FailReturnUrl = "https://t.me/wallet",
-            CustomData = "client_ref=4E887",
+            TimeoutSeconds = 10800,
             CustomerTelegramUserId = 111
         };
     }
