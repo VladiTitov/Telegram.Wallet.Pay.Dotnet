@@ -1,0 +1,32 @@
+name: pack package and push to nuget package repository
+
+inputs:
+  GITHUB_SHA:
+    required: true
+  PACKAGE_NAME:
+    required: true
+  PROJECT_PATH:
+    required: true
+
+runs:
+  using: "composite"
+  
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ inputs.GITHUB_SHA }}
+        fetch-depth: 0
+    
+    - name: Extract metadata for package versioning
+      id: meta
+      uses: anothrNick/github-tag-action@1.67.0
+      env:
+        GITHUB_TOKEN: ${{ inputs.REGISTRY_TOKEN }}
+        WITH_V: false
+
+    - name: Pack package to nuget package
+      run: dotnet pack --configuration Release ${{ PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
+
+    - name: Publish package to nuget package repository
+      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }}

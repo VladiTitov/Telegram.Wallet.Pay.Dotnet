@@ -1,0 +1,35 @@
+name: wallet-pay-library-pack
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+    paths:
+      - src/Wallet.Pay/**
+      - .github/workflows/wallet-pay-library-pack.yml
+      - .github/workflows/composite/pack-push/**
+
+env:
+  PACKAGE_NAME: Telegram.Wallet.Pay
+  PROJECT_PATH: ./src/Wallet.Pay/Wallet.Pay.csproj
+
+jobs:
+  pack-push:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+    
+      - name: Pack and push
+        uses: ./.github/workflows/composite/pack-push
+        with:
+          GITHUB_SHA: ${{ github.sha }}
+          PACKAGE_NAME: ${{ env.PACKAGE_NAME }}
+          PROJECT_PATH: ${{ env.PROJECT_PATH }}
