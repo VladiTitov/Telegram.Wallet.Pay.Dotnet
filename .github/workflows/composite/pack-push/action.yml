@@ -7,7 +7,9 @@ inputs:
     required: true
   PROJECT_PATH:
     required: true
-  TOKEN:
+  GITHUB_TOKEN:
+    required: true
+  NUGET_TOKEN:
     required: true
 
 runs:
@@ -24,7 +26,7 @@ runs:
       id: meta
       uses: anothrNick/github-tag-action@1.67.0
       env:
-        GITHUB_TOKEN: ${{ inputs.REGISTRY_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         WITH_V: false
     
     - name: Setup .NET
@@ -38,4 +40,4 @@ runs:
 
     - name: Publish package to nuget package repository
       shell: bash
-      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.TOKEN }}
+      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.NUGET_TOKEN }}
