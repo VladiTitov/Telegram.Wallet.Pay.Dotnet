@@ -27,7 +27,7 @@ runs:
       uses: anothrNick/github-tag-action@1.67.0
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        WITH_V: false
+        WITH_V: true
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -40,4 +40,4 @@ runs:
 
     - name: Publish package to nuget package repository
       shell: bash
-      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.NUGET_TOKEN }}
+      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag | grep -E -i -o '([0-9]+.[0-9]+.[0-9]+)' }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.NUGET_TOKEN }}
