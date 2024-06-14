@@ -36,7 +36,7 @@ runs:
 
     - name: Pack package to nuget package
       shell: bash
-      run: dotnet pack --configuration Release ${{ inputs.PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
+      run: dotnet pack --configuration Release ${{ inputs.PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --output .
 
     - name: Publish package to nuget package repository
       shell: bash
