@@ -33,3 +33,4 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           PACKAGE_NAME: ${{ env.PACKAGE_NAME }}
           PROJECT_PATH: ${{ env.PROJECT_PATH }}
+          TOKEN: ${{ secrets.NUGET_TOKEN }}

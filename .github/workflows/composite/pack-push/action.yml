@@ -7,6 +7,8 @@ inputs:
     required: true
   PROJECT_PATH:
     required: true
+  TOKEN:
+    required: true
 
 runs:
   using: "composite"
@@ -31,7 +33,9 @@ runs:
         dotnet-version: "8.0.x"
 
     - name: Pack package to nuget package
+      shell: bash
       run: dotnet pack --configuration Release ${{ inputs.PROJECT_PATH }} -p:PackageVersion=${{ steps.meta.outputs.tag }} --no-build --no-restore --output .
 
     - name: Publish package to nuget package repository
-      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }}
+      shell: bash
+      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.TOKEN }}
