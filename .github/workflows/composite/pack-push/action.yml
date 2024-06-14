@@ -40,4 +40,6 @@ runs:
 
     - name: Publish package to nuget package repository
       shell: bash
-      run: dotnet nuget push ${{ inputs.PACKAGE_NAME }}.${{ steps.meta.outputs.tag | grep -E -i -o '([0-9]+.[0-9]+.[0-9]+)' }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.NUGET_TOKEN }}
+      run: |
+        NUGET_VERSION=$(echo ${{steps.meta.outputs.tag}} | grep -E -i -o '([0-9]+.[0-9]+.[0-9]+)')
+        dotnet nuget push ${{ inputs.PACKAGE_NAME }}.$NUGET_VERSION.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.NUGET_TOKEN }}
