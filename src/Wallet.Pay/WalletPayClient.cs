@@ -41,13 +41,14 @@ public class WalletPayClient(
 
         if (httpResponse.StatusCode != HttpStatusCode.OK)
         {
-            //Error
-            throw new NotImplementedException();
+            var failedApiResponse = await httpResponse
+                .DeserializeContentAsync<ApiResponse>(cancellationToken);
+            throw new RequestException(
+                message: failedApiResponse.Message, 
+                httpStatusCode: httpResponse.StatusCode);
         }
-
-        var content = await httpResponse.Content.ReadAsStringAsync(cancellationToken);
-        return JsonConvert.DeserializeObject<ResponseBase<TResponse>>(value: content) 
-            ?? throw new ArgumentNullException(nameof(content));
+        return await httpResponse
+            .DeserializeContentAsync<ResponseBase<TResponse>>(cancellationToken);
     }
 
     static async Task<HttpResponseMessage> SendRequestAsync(
@@ -70,15 +71,11 @@ public class WalletPayClient(
                 throw;
             }
 
-            throw new RequestException(
-                message: "Request timed out", 
-                exception: ex);
+            throw new RequestException("Request timed out", ex);
         }
         catch (Exception ex)
         {
-            throw new RequestException
-                (message: "Exception during making request", 
-                exception: ex);
+            throw new RequestException("Exception during making request", ex);
         }
 
         return httpResponseMessage;
