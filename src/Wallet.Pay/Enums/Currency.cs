@@ -2,6 +2,9 @@
 
 namespace Wallet.Pay.Enums;
 
+/// <summary>
+/// Currency code
+/// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
 public enum Currency
 {
@@ -14,6 +17,9 @@ public enum Currency
     RUB
 }
 
+/// <summary>
+/// Crypto currency you want to receive no matter what crypto currency the payer will choose to pay
+/// </summary>
 [JsonConverter(typeof(StringEnumConverter))]
 public enum ConversionCurrency
 {
