@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TResponse">Type of result expected in result</typeparam>
 #nullable disable
-public class ResponseBase<TResponse> : IResponse<TResponse>
+public class Response<TResponse> : IResponse<TResponse>
 {
     /// <summary>
     /// Operation result status, always present
