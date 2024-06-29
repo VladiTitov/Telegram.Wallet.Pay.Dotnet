@@ -20,7 +20,7 @@ public class WalletPayClient(
         : this(new WalletPayClientOptions(token), httpClient)
     { }
 
-    public async Task<IResponse<TResponse>> MakeRequestAsync<TResponse>(
+    public async Task<TResponse> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
         CancellationToken cancellationToken = default) where TResponse : class
     {
@@ -48,7 +48,7 @@ public class WalletPayClient(
                 httpStatusCode: httpResponse.StatusCode);
         }
         return await httpResponse
-            .DeserializeContentAsync<ResponseBase<TResponse>>(cancellationToken);
+            .DeserializeContentAsync<TResponse>(cancellationToken);
     }
 
     static async Task<HttpResponseMessage> SendRequestAsync(

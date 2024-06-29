@@ -1,7 +1,4 @@
-﻿using Wallet.Pay.Models;
-using Wallet.Pay.Responses.Orders;
-
-namespace Wallet.Pay.Requests.Orders;
+﻿namespace Wallet.Pay.Requests.Orders;
 
 #nullable disable
 [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
@@ -9,19 +6,19 @@ internal class CreateOrderRequest()
     : RequestBase<CreateOrderResponse>("wpay/store-api/v1/order")
 {
     /// <summary>
-    /// <see cref="Amount"/>
+    /// <see cref="MoneyAmount"/>
     /// </summary>
-    public Amount Amount { get; set; }
-
-    /// <summary>
-    /// Description of the order
-    /// </summary>
-    public string Description { get; set; }
+    public MoneyAmount Amount { get; set; }
 
     /// <summary>
     /// Order ID in Merchant system. Use to prevent orders duplication due to request retries
     /// </summary>
     public string ExternalId { get; set; }
+
+    /// <summary>
+    /// Description of the order
+    /// </summary>
+    public string Description { get; set; }
 
     /// <summary>
     /// Order TTL, if the order is not paid within the timeout period
