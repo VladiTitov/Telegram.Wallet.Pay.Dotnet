@@ -8,8 +8,9 @@ namespace Wallet.Pay.Requests;
 /// <typeparam name="TResponse">Type of result expected in result</typeparam>
 /// <param name="uriPath">API uri path</param>
 /// <param name="method">HTTP method of request</param>
-public class RequestBase<TResponse>(
-    string uriPath, HttpMethod method) : IRequest<TResponse>
+public class Request<TResponse>(
+    string uriPath, HttpMethod method) : IRequest<TResponse> 
+    where TResponse : class, IResponse
 {
     [JsonIgnore]
     public HttpMethod Method { get; } = method;
@@ -17,8 +18,8 @@ public class RequestBase<TResponse>(
     [JsonIgnore]
     public string UriPath { get; } = uriPath;
 
-    public RequestBase(string uriPath) 
-        : this(uriPath, HttpMethod.Post)
+    public Request(string uriPath) 
+        : this(uriPath, HttpMethod.Get)
     { }
 
     /// <summary>

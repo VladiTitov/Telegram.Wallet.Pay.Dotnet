@@ -3,9 +3,8 @@
 /// <summary>
 /// API response
 /// </summary>
-/// <typeparam name="TResponse">Type of result expected in result</typeparam>
 #nullable disable
-public class ResponseBase<TResponse> : IResponse<TResponse>
+public class Response : IResponse
 {
     /// <summary>
     /// Operation result status, always present
@@ -16,7 +15,15 @@ public class ResponseBase<TResponse> : IResponse<TResponse>
     /// Verbose reason of non-success result
     /// </summary>
     public string Message { get; set; }
+}
 
+/// <summary>
+/// API response
+/// </summary>
+/// <typeparam name="TResponse">Type of result expected in result</typeparam>
+
+public class Response<TResponse> : Response, IResponse<TResponse>
+{
     /// <summary>
     /// Response payload, present if status is SUCCESS
     /// </summary>

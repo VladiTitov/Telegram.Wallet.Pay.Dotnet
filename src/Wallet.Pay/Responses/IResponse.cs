@@ -3,8 +3,7 @@
 /// <summary>
 /// API response interface
 /// </summary>
-/// <typeparam name="TResponse">Type of result expected in result</typeparam>
-public interface IResponse<TResponse>
+public interface IResponse
 {
     /// <summary>
     /// Response status
@@ -15,7 +14,14 @@ public interface IResponse<TResponse>
     /// Verbose reason of non-success result
     /// </summary>
     public string Message { get; set; }
+}
 
+/// <summary>
+/// API response interface
+/// </summary>
+/// <typeparam name="TResponse">Type of result expected in result</typeparam>
+public interface IResponse<TResponse> : IResponse
+{
     /// <summary>
     /// Response payload, present if status is SUCCESS
     /// </summary>
