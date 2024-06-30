@@ -3,7 +3,9 @@
 #nullable disable
 [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
 internal class CreateOrderRequest() 
-    : RequestBase<CreateOrderResponse>("wpay/store-api/v1/order")
+    : Request<CreateOrderResponse>(
+        uriPath: "wpay/store-api/v1/order",
+        method: HttpMethod.Post)
 {
     /// <summary>
     /// <see cref="MoneyAmount"/>
