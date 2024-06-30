@@ -1,10 +1,10 @@
-﻿namespace Wallet.Pay.Models;
+﻿namespace Wallet.Pay.Webhooks;
 
 /// <summary>
 /// Notification about completed Order
 /// </summary>
 #nullable disable
-public class WebhookMessage<TMessage>
+public class WebhookMessage
 {
     /// <summary>
     /// Idempotency key. We send a max of one type of webhook message for one event
@@ -19,7 +19,7 @@ public class WebhookMessage<TMessage>
     /// <summary>
     /// ISO-8601 when order was completed
     /// </summary>
-    public DateTimeOffset EventDateTime {  get; set; }
+    public DateTimeOffset EventDateTime { get; set; }
 
     /// <summary>
     /// <see cref="WebhookPayload"/>

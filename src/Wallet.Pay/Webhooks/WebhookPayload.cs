@@ -1,4 +1,4 @@
-﻿namespace Wallet.Pay.Models;
+﻿namespace Wallet.Pay.Webhooks;
 
 /// <summary>
 /// Order data. SelectedPaymentOption is absent for failed orders. Status is absent for paid orders
@@ -22,27 +22,28 @@ public class WebhookPayload
     public string ExternalId { get; set; }
 
     /// <summary>
-    /// <see cref="OrderStatus"/>
-    /// </summary>
-    public OrderStatus Status {  get; set; }
-
-    /// <summary>
-    /// Any custom string, will be provided through webhook and order status polling
-    /// </summary>
-    public string CustomData { get; set; }
-
-    /// <summary>
     /// <see cref="MoneyAmount"/>
     /// </summary>
-    public MoneyAmount MoneyAmount { get; set; }
-
-    /// <summary>
-    /// <see cref="PaymentOption"/>
-    /// </summary>
-    public PaymentOption SelectedPaymentOption { get; set; }
+    public MoneyAmount OrderAmount { get; set; }
 
     /// <summary>
     /// ISO 8601 timestamp indicating the time of order completion, in UTC
     /// </summary>
     public DateTimeOffset OrderCompletedDateTime { get; set; }
+
+#nullable enable
+    /// <summary>
+    /// <see cref="OrderStatus"/>
+    /// </summary>
+    public OrderStatus? Status { get; set; }
+
+    /// <summary>
+    /// Any custom string, will be provided through webhook and order status polling
+    /// </summary>
+    public string? CustomData { get; set; }
+
+    /// <summary>
+    /// <see cref="PaymentOption"/>
+    /// </summary>
+    public PaymentOption? SelectedPaymentOption { get; set; }
 }
