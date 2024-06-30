@@ -20,9 +20,9 @@ public class WalletPayClient(
         : this(new WalletPayClientOptions(token), httpClient)
     { }
 
-    public async Task<IResponse<TResponse>> MakeRequestAsync<TResponse>(
+    public async Task<TResponse> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
-        CancellationToken cancellationToken = default) where TResponse : class
+        CancellationToken cancellationToken = default) where TResponse : class, IResponse
     {
         ArgumentNullException.ThrowIfNull(request);
 
@@ -42,13 +42,13 @@ public class WalletPayClient(
         if (httpResponse.StatusCode != HttpStatusCode.OK)
         {
             var failedApiResponse = await httpResponse
-                .DeserializeContentAsync<ApiResponse>(cancellationToken);
+                .DeserializeContentAsync<TResponse>(cancellationToken);
             throw new RequestException(
                 message: failedApiResponse.Message, 
                 httpStatusCode: httpResponse.StatusCode);
         }
         return await httpResponse
-            .DeserializeContentAsync<ResponseBase<TResponse>>(cancellationToken);
+            .DeserializeContentAsync<TResponse>(cancellationToken);
     }
 
     static async Task<HttpResponseMessage> SendRequestAsync(

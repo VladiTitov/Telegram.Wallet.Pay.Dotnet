@@ -1,10 +1,5 @@
-﻿using Wallet.Pay.Responses.Orders;
-
-namespace Wallet.Pay.Requests.Orders;
+﻿namespace Wallet.Pay.Requests.Orders;
 
 internal class GetPreviewOrderRequest(string id) 
-    : RequestBase<GetPreviewOrderResponse>(
-        $"wpay/store-api/v1/order/preview?id={id}",
-        HttpMethod.Get)
-{
-}
+    : Request<GetOrderPreviewResponse>(
+        $"wpay/store-api/v1/order/preview?id={id}");

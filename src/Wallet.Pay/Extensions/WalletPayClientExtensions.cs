@@ -21,7 +21,7 @@ public static class WalletPayClientExtensions
     /// <param name="customData">Any custom string, will be provided through webhook and order status polling</param>
     /// <param name="cancellationToken"></param>
     /// <returns>CreateOrderResponse</returns>
-    public static Task<IResponse<CreateOrderResponse>> CreateOrderAsync(
+    public static Task<CreateOrderResponse> CreateOrderAsync(
         this IWalletPayClient walletPayClient,
         double amount,
         Currency currency,
@@ -56,7 +56,7 @@ public static class WalletPayClientExtensions
     /// <param name="id">Order id</param>
     /// <param name="cancellationToken"></param>
     /// <returns>GetPreviewOrderResponse</returns>
-    public static Task<IResponse<GetPreviewOrderResponse>> GetPreviewOrderAsync(
+    public static Task<GetOrderPreviewResponse> GetPreviewOrderAsync(
         this IWalletPayClient walletPayClient,
         string id,
         CancellationToken cancellationToken = default)
@@ -72,7 +72,7 @@ public static class WalletPayClientExtensions
     /// <param name="count">Specifying the limit of orders for the request</param>
     /// <param name="cancellationToken"></param>
     /// <returns>GetOrderListResponse</returns>
-    public static Task<IResponse<GetOrderListResponse>> GetOrderListAsync(
+    public static Task<GetOrderReconciliationListResponse> GetOrderListAsync(
         this IWalletPayClient walletPayClient,
         int offset,
         int count,
@@ -87,7 +87,7 @@ public static class WalletPayClientExtensions
     /// <param name="walletPayClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns>GetOrderAmountResponse</returns>
-    public static Task<IResponse<GetOrderAmountResponse>> GetOrderAmountAsync(
+    public static Task<OrderAmountResponse> GetOrderAmountAsync(
         this IWalletPayClient walletPayClient,
         CancellationToken cancellationToken = default)
         => walletPayClient.MakeRequestAsync(
