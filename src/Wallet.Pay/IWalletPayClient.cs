@@ -14,5 +14,5 @@ public interface IWalletPayClient
     /// <returns>Result of the API request</returns>
     Task<TResponse> MakeRequestAsync<TResponse>(
         IRequest<TResponse> request,
-        CancellationToken cancellationToken = default) where TResponse : class;
+        CancellationToken cancellationToken = default) where TResponse : class, IResponse;
 }
