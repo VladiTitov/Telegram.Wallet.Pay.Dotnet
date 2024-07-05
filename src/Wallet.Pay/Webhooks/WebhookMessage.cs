@@ -9,7 +9,7 @@ public class WebhookMessage
     /// <summary>
     /// Idempotency key. We send a max of one type of webhook message for one event
     /// </summary>
-    public int EventId { get; set; }
+    public long EventId { get; set; }
 
     /// <summary>
     /// <see cref="WebhookMessageType"/>

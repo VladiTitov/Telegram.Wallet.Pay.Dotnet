@@ -25,12 +25,12 @@ internal class CreateOrderRequest()
     /// <summary>
     /// Order TTL, if the order is not paid within the timeout period
     /// </summary>
-    public int TimeoutSeconds { get; set; }
+    public long TimeoutSeconds { get; set; }
 
     /// <summary>
     /// The customer's telegram id (User_id). For more details please follow the link
     /// </summary>
-    public int CustomerTelegramUserId { get; set; }
+    public long CustomerTelegramUserId { get; set; }
 
 #nullable enable
     /// <summary>
