@@ -11,7 +11,7 @@ public class MoneyAmount
     public MoneyAmount()
     { }
 
-    public MoneyAmount(double value, Currency currencyCode)
+    public MoneyAmount(decimal value, Currency currencyCode)
     {
         Amount = string.Format(CultureInfo.InvariantCulture, "{0}", value);
         CurrencyCode = currencyCode;

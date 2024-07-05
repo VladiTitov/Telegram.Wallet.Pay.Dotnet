@@ -9,7 +9,7 @@ public class WebhookPayload
     /// <summary>
     /// Order id
     /// </summary>
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     /// Human-readable short order id shown to a customer

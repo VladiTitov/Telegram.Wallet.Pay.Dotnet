@@ -34,7 +34,7 @@ public class OrderReconciliationItem
     /// <summary>
     /// The order customer telegram id
     /// </summary>
-    public int? CustomerTelegramUserId { get; set; }
+    public long? CustomerTelegramUserId { get; set; }
 
     /// <summary>
     /// ISO-8601 date time when order was created

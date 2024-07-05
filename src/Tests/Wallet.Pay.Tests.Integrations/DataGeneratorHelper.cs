@@ -12,7 +12,7 @@ internal class DataGeneratorHelper
         var externalId = Guid.NewGuid().ToString();
         _createOrderRequest = new()
         {
-            Amount = new(0.01, Currency.TON),
+            Amount = new((decimal)0.01, Currency.TON),
             ExternalId = externalId,
             Description = "VPN for 1 month",
             TimeoutSeconds = 10800,

@@ -23,7 +23,7 @@ public static class WalletPayClientExtensions
     /// <returns>CreateOrderResponse</returns>
     public static Task<CreateOrderResponse> CreateOrderAsync(
         this IWalletPayClient walletPayClient,
-        double amount,
+        decimal amount,
         Currency currency,
         string description,
         string externalId,
